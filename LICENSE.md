@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 
-Copyright © 2024-2028 Tonio Knuth
+Copyright © 2024 Tonio Knuth
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
