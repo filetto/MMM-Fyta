@@ -84,6 +84,10 @@ function createFlexboxLayoutFromJSON(jsonData) {
         var salinityDiv = document.createElement("div");
         salinityDiv.innerHTML = `<i class="fas fa-seedling"></i> ${getStatusText(plant.salinity_status)}`;
         statusCell.appendChild(salinityDiv);
+
+        var temperatureDiv = document.createElement("div");
+        temperatureDiv.innerHTML = `<i class="fa-solid fa-temperature-low icon"></i> ${getStatusText(plant.temperature_status)}`;
+        statusCell.appendChild(temperatureDiv);
     
 
         row.appendChild(statusCell);
