@@ -7,7 +7,7 @@ This module is a very simplistic implementation so far, there is no warranty for
 To use add this config to your MMM config:
 
 {
-		module: "MMM-fyta",
+		module: "MMM-Fyta",
 		position: "bottom_right",
 		config: {
 			email: YOUR FYTA USER EMAIL,
