@@ -112,6 +112,15 @@ Module.register("MMM-Fyta", {
         },
     getDom: function() {
     const wrapper = document.createElement("div");
+
+    // Überprüfen, ob Pflanzen-Daten geladen sind
+    if (!data.plants || data.plants.length === 0) {
+        wrapper.innerHTML = "Loading plant data...";
+        wrapper.className = "dimmed light small";
+        return wrapper;
+    }
+
+    // Erstellung des Rasters
     wrapper.className = "grid-container";
 
     // Legende hinzufügen
@@ -128,33 +137,51 @@ Module.register("MMM-Fyta", {
     });
     wrapper.appendChild(legendRow);
 
-    // Divider hinzufügen
-    const divider = document.createElement("div");
-    divider.className = "divider";
-    wrapper.appendChild(divider);
-
     // Pflanzeninformationen hinzufügen
     data.plants.forEach(plant => {
-        // Pflanzenname
+        // Pflanzenname anzeigen
         const plantNameDiv = document.createElement("div");
         plantNameDiv.className = "swimlane-name";
         plantNameDiv.innerHTML = `${plant.name} <span>${plant.emoji}</span>`;
         wrapper.appendChild(plantNameDiv);
 
-        // Balken
+        // Balken erstellen
         const barGroups = document.createElement("div");
         barGroups.className = "bar-groups";
-        barGroups.id = `${plant.name}-bars`;
-        wrapper.appendChild(barGroups);
+        plant.status.forEach(status => {
+            const bar = document.createElement("div");
+            bar.className = "bar";
 
-        // Divider hinzufügen
-        const divider = document.createElement("div");
-        divider.className = "divider";
-        wrapper.appendChild(divider);
+            // Farbe basierend auf dem Status setzen
+            switch (status) {
+                case 1:
+                    bar.classList.add("red");
+                    break;
+                case 2:
+                    bar.classList.add("orange");
+                    break;
+                case 3:
+                    bar.classList.add("green");
+                    break;
+                case 4:
+                    bar.classList.add("orange");
+                    break;
+                case 5:
+                    bar.classList.add("red");
+                    break;
+                default:
+                    bar.classList.add("gray");
+            }
+
+            barGroups.appendChild(bar);
+        });
+
+        wrapper.appendChild(barGroups);
     });
 
     return wrapper;
 },
+
 
     getStyles: function() {
         return ['font-awesome.css'];
