@@ -159,10 +159,48 @@ Module.register("MMM-Fyta", {
     getStyles: function() {
         return ['font-awesome.css'];
     },
-    socketNotificationReceived (notification, payload) {
-		if (notification === "PLANTS") {
-            data = payload;
-            this.updateDom();
-        }
-	},
+    socketNotificationReceived: function(notification, payload) {
+    if (notification === "PLANT_DATA") {
+        this.plants = payload;
+        this.updateDom();
+
+        // Balken einfärben
+        this.plants.forEach(plant => {
+            const barGroups = document.getElementById(`${plant.name}-bars`);
+            if (barGroups) {
+                barGroups.innerHTML = ""; // Vorherige Balken entfernen
+
+                // Statuswerte in umgekehrter Reihenfolge durchlaufen (von unten nach oben)
+                plant.status.reverse().forEach((status, index) => {
+                    const bar = document.createElement("div");
+                    bar.className = "bar";
+
+                    // Farbe basierend auf dem Status setzen
+                    switch (status) {
+                        case 1:
+                            bar.classList.add("red");
+                            break;
+                        case 2:
+                            bar.classList.add("orange");
+                            break;
+                        case 3:
+                            bar.classList.add("green");
+                            break;
+                        case 4:
+                            bar.classList.add("orange");
+                            break;
+                        case 5:
+                            bar.classList.add("red");
+                            break;
+                        default:
+                            bar.classList.add("gray");
+                    }
+
+                    barGroups.appendChild(bar);
+                });
+            }
+        });
+    }
+}
+
 });
