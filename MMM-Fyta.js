@@ -188,11 +188,11 @@ Module.register("MMM-Fyta", {
     },
     socketNotificationReceived: function(notification, payload) {
     if (notification === "PLANTS") {
-         if (!Array.isArray(payload)) {
-            console.error("Fehler: Erwartetes Array, aber erhalten:", payload);
+         if (!payload || !Array.isArray(payload.plants)) {
+            console.error("MMM-Fyta: Ungültige Daten empfangen:", payload);
             return;
          }
-        data.plants = payload;
+        data.plants = payload.plants;
         console.log("MMM-Fyta: Daten empfangen", payload); // Debug-Log
         this.updateDom();
 
