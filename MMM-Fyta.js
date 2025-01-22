@@ -187,7 +187,7 @@ Module.register("MMM-Fyta", {
         return ['font-awesome.css'];
     },
     socketNotificationReceived: function(notification, payload) {
-    if (notification === "PLANT_DATA") {
+    if (notification === "PLANTS") {
         console.log("MMM-Fyta: Daten empfangen", payload); // Debug-Log
         data.plants = payload;
         this.updateDom();
