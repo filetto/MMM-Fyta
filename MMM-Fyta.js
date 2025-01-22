@@ -126,17 +126,16 @@ Module.register("MMM-Fyta", {
         const plantRow = document.createElement("div");
         plantRow.className = "swimlane";
 
-        // Pflanzennamen anzeigen
+        // Nur den Nicknamen anzeigen (common_name entfernt)
         const plantNameDiv = document.createElement("div");
         plantNameDiv.className = "swimlane-name";
-        plantNameDiv.innerHTML = `${plant.nickname} <span>${plant.common_name}</span>`;
+        plantNameDiv.innerHTML = `${plant.nickname}`; // Zeigt nur den Nicknamen
         plantRow.appendChild(plantNameDiv);
 
         // Balken-Gruppen (für Wasser, Pflanze, Sonne, Temperatur)
         const barGroups = document.createElement("div");
         barGroups.className = "bar-groups";
 
-        // Icons: Wassertropfen, Pflanze, Sonne, Temperatur
         const statuses = [
             { status: plant.moisture_status, icon: "tint" },
             { status: plant.salinity_status, icon: "seedling" },
@@ -175,7 +174,6 @@ Module.register("MMM-Fyta", {
                             bar.classList.add("gray");
                     }
                 } else {
-                    // Standardfarbe (grau) für alle anderen Balken
                     bar.classList.add("gray");
                 }
 
@@ -189,7 +187,6 @@ Module.register("MMM-Fyta", {
             iconElement.className = `fas fa-${icon}`;
             iconDiv.appendChild(iconElement);
 
-            // Icon und Balken in die Gruppe einfügen
             barContainer.appendChild(iconDiv);
             barGroups.appendChild(barContainer);
         });
@@ -200,8 +197,6 @@ Module.register("MMM-Fyta", {
 
     return wrapper;
 },
-
-
 
     getStyles: function() {
         return ["MMM-Fyta.css"];
