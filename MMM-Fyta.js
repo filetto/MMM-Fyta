@@ -188,6 +188,7 @@ Module.register("MMM-Fyta", {
     },
     socketNotificationReceived: function(notification, payload) {
     if (notification === "PLANT_DATA") {
+        console.log("MMM-Fyta: Daten empfangen", payload); // Debug-Log
         data.plants = payload;
         this.updateDom();
 
