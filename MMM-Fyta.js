@@ -154,7 +154,7 @@ Module.register("MMM-Fyta", {
     });
 
     return wrapper;
-}
+},
 
     getStyles: function() {
         return ['font-awesome.css'];
