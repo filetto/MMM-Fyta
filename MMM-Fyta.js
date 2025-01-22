@@ -110,77 +110,97 @@ Module.register("MMM-Fyta", {
             this.sendSocketNotification("START_FETCHER", this.config);
             this.updateDom();
         },
-    getDom: function() {
+    getDom: function () {
     const wrapper = document.createElement("div");
 
-    // Überprüfen, ob Pflanzen-Daten geladen sind
-    if (!data.plants || data.plants.length === 0) {
+    if (!data.plants || !Array.isArray(data.plants) || data.plants.length === 0) {
         wrapper.innerHTML = "Loading plant data...";
         wrapper.className = "dimmed light small";
         return wrapper;
     }
 
-    // Erstellung des Rasters
     wrapper.className = "grid-container";
 
-    // Legende hinzufügen
-    const legendRow = document.createElement("div");
-    legendRow.className = "legend-row";
-    const icons = ["tint", "seedling", "sun", "temperature-low"];
-    icons.forEach(icon => {
-        const iconDiv = document.createElement("div");
-        iconDiv.className = "legend-icon";
-        const i = document.createElement("i");
-        i.className = `fas fa-${icon}`;
-        iconDiv.appendChild(i);
-        legendRow.appendChild(iconDiv);
-    });
-    wrapper.appendChild(legendRow);
-
-    // Pflanzeninformationen hinzufügen
+    // Für jede Pflanze eine Zeile (Swimlane) erstellen
     data.plants.forEach(plant => {
-        // Pflanzenname anzeigen
+        const plantRow = document.createElement("div");
+        plantRow.className = "swimlane";
+
+        // Pflanzennamen anzeigen
         const plantNameDiv = document.createElement("div");
         plantNameDiv.className = "swimlane-name";
-        plantNameDiv.innerHTML = `${plant.name} <span>${plant.emoji}</span>`;
-        wrapper.appendChild(plantNameDiv);
+        plantNameDiv.innerHTML = `${plant.nickname} <span>${plant.common_name}</span>`;
+        plantRow.appendChild(plantNameDiv);
 
-        // Balken erstellen
+        // Balken-Gruppen (für Wasser, Pflanze, Sonne, Temperatur)
         const barGroups = document.createElement("div");
         barGroups.className = "bar-groups";
-        plant.status.forEach(status => {
-            const bar = document.createElement("div");
-            bar.className = "bar";
 
-            // Farbe basierend auf dem Status setzen
-            switch (status) {
-                case 1:
-                    bar.classList.add("red");
-                    break;
-                case 2:
-                    bar.classList.add("orange");
-                    break;
-                case 3:
-                    bar.classList.add("green");
-                    break;
-                case 4:
-                    bar.classList.add("orange");
-                    break;
-                case 5:
-                    bar.classList.add("red");
-                    break;
-                default:
+        // Icons: Wassertropfen, Pflanze, Sonne, Temperatur
+        const statuses = [
+            { status: plant.moisture_status, icon: "tint" },
+            { status: plant.salinity_status, icon: "seedling" },
+            { status: plant.light_status, icon: "sun" },
+            { status: plant.temperature_status, icon: "temperature-low" }
+        ];
+
+        statuses.forEach(({ status, icon }) => {
+            const barContainer = document.createElement("div");
+            barContainer.className = "bar-container";
+
+            // Balken von unten nach oben generieren (1-5)
+            for (let i = 1; i <= 5; i++) {
+                const bar = document.createElement("div");
+                bar.className = "bar";
+
+                // Färbe den Balken, wenn der Status gleich der Balkennummer ist
+                if (i === status) {
+                    switch (status) {
+                        case 1:
+                            bar.classList.add("red");
+                            break;
+                        case 2:
+                            bar.classList.add("orange");
+                            break;
+                        case 3:
+                            bar.classList.add("green");
+                            break;
+                        case 4:
+                            bar.classList.add("orange");
+                            break;
+                        case 5:
+                            bar.classList.add("red");
+                            break;
+                        default:
+                            bar.classList.add("gray");
+                    }
+                } else {
+                    // Standardfarbe (grau) für alle anderen Balken
                     bar.classList.add("gray");
+                }
+
+                barContainer.appendChild(bar);
             }
 
-            barGroups.appendChild(bar);
+            // Icon hinzufügen
+            const iconDiv = document.createElement("div");
+            iconDiv.className = "legend-icon";
+            const iconElement = document.createElement("i");
+            iconElement.className = `fas fa-${icon}`;
+            iconDiv.appendChild(iconElement);
+
+            // Icon und Balken in die Gruppe einfügen
+            barContainer.appendChild(iconDiv);
+            barGroups.appendChild(barContainer);
         });
 
-        wrapper.appendChild(barGroups);
+        plantRow.appendChild(barGroups);
+        wrapper.appendChild(plantRow);
     });
 
     return wrapper;
 },
+
 
 
     getStyles: function() {
