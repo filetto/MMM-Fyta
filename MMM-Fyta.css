@@ -1,0 +1,61 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 1fr);
+    gap: 10px;
+    align-items: center;
+}
+
+.legend-row {
+    display: contents;
+}
+
+.legend-icon {
+    text-align: center;
+    font-size: 30px;
+}
+
+.swimlane-name {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.bar-groups {
+    display: flex;
+    justify-content: space-around;
+}
+
+.bar-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    height: 125px;
+    justify-content: space-between;
+}
+
+.bar {
+    width: 30px;
+    height: 20px;
+    background-color: gray;
+    border-radius: 5px;
+    margin: 2px 0;
+}
+
+.red {
+    background-color: #dc3545;
+}
+
+.orange {
+    background-color: #ffc107;
+}
+
+.green {
+    background-color: #28a745;
+}
+
+.divider {
+    grid-column: span 5;
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+}
