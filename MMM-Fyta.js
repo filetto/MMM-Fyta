@@ -204,7 +204,7 @@ Module.register("MMM-Fyta", {
 
 
     getStyles: function() {
-        return ['font-awesome.css'];
+        return ["MMM-Fyta.css"];
     },
     socketNotificationReceived: function(notification, payload) {
     if (notification === "PLANTS") {
