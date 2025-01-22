@@ -111,10 +111,51 @@ Module.register("MMM-Fyta", {
             this.updateDom();
         },
     getDom: function() {
-        var wrapper = document.createElement("div");
-        wrapper.innerHTML = createFlexboxLayoutFromJSON(data);
-        return wrapper;
-    },
+    const wrapper = document.createElement("div");
+    wrapper.className = "grid-container";
+
+    // Legende hinzufügen
+    const legendRow = document.createElement("div");
+    legendRow.className = "legend-row";
+    const icons = ["tint", "seedling", "sun", "temperature-low"];
+    icons.forEach(icon => {
+        const iconDiv = document.createElement("div");
+        iconDiv.className = "legend-icon";
+        const i = document.createElement("i");
+        i.className = `fas fa-${icon}`;
+        iconDiv.appendChild(i);
+        legendRow.appendChild(iconDiv);
+    });
+    wrapper.appendChild(legendRow);
+
+    // Divider hinzufügen
+    const divider = document.createElement("div");
+    divider.className = "divider";
+    wrapper.appendChild(divider);
+
+    // Pflanzeninformationen hinzufügen
+    this.plants.forEach(plant => {
+        // Pflanzenname
+        const plantNameDiv = document.createElement("div");
+        plantNameDiv.className = "swimlane-name";
+        plantNameDiv.innerHTML = `${plant.name} <span>${plant.emoji}</span>`;
+        wrapper.appendChild(plantNameDiv);
+
+        // Balken
+        const barGroups = document.createElement("div");
+        barGroups.className = "bar-groups";
+        barGroups.id = `${plant.name}-bars`;
+        wrapper.appendChild(barGroups);
+
+        // Divider hinzufügen
+        const divider = document.createElement("div");
+        divider.className = "divider";
+        wrapper.appendChild(divider);
+    });
+
+    return wrapper;
+}
+
     getStyles: function() {
         return ['font-awesome.css'];
     },
