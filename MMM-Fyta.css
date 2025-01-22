@@ -28,7 +28,8 @@
     display: flex;
     flex: 4;
     justify-content: space-around;
-    align-items: flex-start;
+   /* align-items: flex-start; */
+    column-gap: 20px; /* Abstand zwischen den Balkengruppen */
 }
 
 /* Balkencontainer */
