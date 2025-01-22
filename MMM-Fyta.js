@@ -193,7 +193,7 @@ Module.register("MMM-Fyta", {
         this.updateDom();
 
         // Balken einfärben
-        this.plants.forEach(plant => {
+        data.plants.forEach(plant => {
             const barGroups = document.getElementById(`${plant.name}-bars`);
             if (barGroups) {
                 barGroups.innerHTML = ""; // Vorherige Balken entfernen
