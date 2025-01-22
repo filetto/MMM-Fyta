@@ -134,7 +134,7 @@ Module.register("MMM-Fyta", {
     wrapper.appendChild(divider);
 
     // Pflanzeninformationen hinzufügen
-    this.plants.forEach(plant => {
+    data.plants.forEach(plant => {
         // Pflanzenname
         const plantNameDiv = document.createElement("div");
         plantNameDiv.className = "swimlane-name";
@@ -161,7 +161,7 @@ Module.register("MMM-Fyta", {
     },
     socketNotificationReceived: function(notification, payload) {
     if (notification === "PLANT_DATA") {
-        this.plants = payload;
+        data.plants = payload;
         this.updateDom();
 
         // Balken einfärben
