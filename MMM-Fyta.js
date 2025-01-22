@@ -188,8 +188,12 @@ Module.register("MMM-Fyta", {
     },
     socketNotificationReceived: function(notification, payload) {
     if (notification === "PLANTS") {
-        console.log("MMM-Fyta: Daten empfangen", payload); // Debug-Log
+         if (!Array.isArray(payload)) {
+            console.error("Fehler: Erwartetes Array, aber erhalten:", payload);
+            return;
+         }
         data.plants = payload;
+        console.log("MMM-Fyta: Daten empfangen", payload); // Debug-Log
         this.updateDom();
 
         // Balken einfärben
