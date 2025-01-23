@@ -41,6 +41,6 @@ module.exports = NodeHelper.create({
 	broadcastPlants (plants) {		
         console.log(`Broadcasting ${plants.plants.length} plants`)
 		this.sendSocketNotification("PLANTS", plants);
-		console.log("Daten, die gesendet werden:", plants);
+	/*	console.log("Daten, die gesendet werden:", plants); */
 	}
 });
