@@ -39,6 +39,7 @@ const FytaPlantsFetcher = function (config) {
 		};
 
 		try {
+			console.log("Hole neue Daten ab der API")
 			const response = await fetch(plantsUrl, { headers: headers });
 			const json = await response.json();
 			plants = json;
