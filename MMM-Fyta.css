@@ -1,0 +1,96 @@
+/* Grundlayout */
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.swimlane {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.swimlane-name {
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+    margin-right: 20px; /* Abstand zwischen Nickname und Balken */
+}
+
+/* Balkengruppen */
+.bar-groups {
+    display: flex;
+    flex: 4;
+    justify-content: space-around;
+   /* align-items: flex-start; */
+    column-gap: 20px; /* Abstand zwischen den Balkengruppen */
+}
+
+/* Balkencontainer */
+.bar-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Balken */
+.bar {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: gray; /* Standardfarbe */
+}
+
+/* Balkenfarben (Status) */
+.bar.red {
+    background-color: #dc3545;
+}
+
+.bar.orange {
+    background-color: #ffc107;
+}
+
+.bar.green {
+    background-color: #28a745;
+}
+
+/* Icon über den Balken */
+.legend-icon {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.legend-icon i {
+    font-size: 20px;
+    color: white;
+}
+
+/* Zusätzliche Stile für Responsivität */
+@media screen and (max-width: 600px) {
+    .swimlane {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .bar-groups {
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    .legend-icon i {
+        font-size: 18px;
+    }
+
+    .bar {
+        width: 18px;
+        height: 18px;
+    }
+}
