@@ -12,6 +12,7 @@
     font-weight: bold !important;
     text-align: center;
     margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 .MMM-Fyta .swimlane {
