@@ -34,6 +34,16 @@ Module.register("MMM-Fyta", {
         },
     getDom: function () {
     const wrapper = document.createElement("div");
+    title.className = "fyta-title"; // Eigene CSS-Klasse für den Titel
+    title.textContent = "testiieee"; // Titel setzen
+    title.style.fontSize = "24px";
+    title.style.color = "white"; // Falls dein Hintergrund dunkel ist
+    title.style.fontWeight = "bold";
+    title.style.textAlign = "center";
+    title.style.marginBottom = "10px";
+
+// **Titel dem Wrapper hinzufügen**
+wrapper.appendChild(title);
 
     if (!data.plants || !Array.isArray(data.plants) || data.plants.length === 0) {
         wrapper.innerHTML = "Loading plant data...";
