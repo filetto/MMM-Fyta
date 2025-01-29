@@ -37,6 +37,7 @@ Module.register("MMM-Fyta", {
     // **Header für den Wrapper hinzufügen**
     const title = document.createElement("div");
     title.className = "fyta-title"; // Klasse setzen, CSS übernimmt das Styling
+    title.textContent = "Wie geits de Pflanzä?"; // Dein Titel
 
     // **Titel zum Wrapper hinzufügen**
     wrapper.appendChild(title);
