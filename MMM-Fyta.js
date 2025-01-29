@@ -32,35 +32,19 @@ Module.register("MMM-Fyta", {
             this.sendSocketNotification("START_FETCHER", this.config);
             this.updateDom();
         },
-    
     getDom: function () {
     const wrapper = document.createElement("div");
 
-    // Falls keine Pflanzendaten vorhanden sind, zeige eine Lade-Nachricht an
-    if (!this.data || !this.data.plants || !Array.isArray(this.data.plants) || this.data.plants.length === 0) {
+    if (!data.plants || !Array.isArray(data.plants) || data.plants.length === 0) {
         wrapper.innerHTML = "Loading plant data...";
         wrapper.className = "dimmed light small";
         return wrapper;
     }
 
-    // **Header erstellen und hinzufügen**
-    var title = document.createElement("div");
-    title.className = "fyta-title";  // Neue CSS-Klasse für den Header
-    title.textContent = "Plants";    // Titel setzen
-    title.style.fontSize = "24px";   
-    title.style.color = "white";     // Falls Hintergrund dunkel ist
-    title.style.fontWeight = "bold";
-    title.style.textAlign = "center";
-    title.style.marginBottom = "10px";
-
-    wrapper.appendChild(title); // **Titel direkt ins Wrapper-Element einfügen**
-
-    // **Grid-Container für die Pflanzenanzeige**
-    var gridContainer = document.createElement("div");
-    gridContainer.className = "grid-container"; // CSS-Klasse für das Layout
+    wrapper.className = "grid-container";
 
     // Für jede Pflanze eine Zeile (Swimlane) erstellen
-    this.data.plants.forEach(plant => {
+    data.plants.forEach(plant => {
         const plantRow = document.createElement("div");
         plantRow.className = "swimlane";
 
@@ -130,15 +114,11 @@ Module.register("MMM-Fyta", {
         });
 
         plantRow.appendChild(barGroups);
-        gridContainer.appendChild(plantRow);
+        wrapper.appendChild(plantRow);
     });
 
-    // **Grid-Container ins Wrapper-Element einfügen**
-    wrapper.appendChild(gridContainer);
-
-    return wrapper; // **Jetzt wird ALLES korrekt zurückgegeben**
+    return wrapper;
 },
-
 
     getStyles: function() {
         return ["MMM-Fyta.css"];
