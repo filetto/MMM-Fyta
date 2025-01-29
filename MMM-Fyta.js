@@ -34,27 +34,33 @@ Module.register("MMM-Fyta", {
         },
     getDom: function () {
     const wrapper = document.createElement("div");
+
+    // **Header für den Wrapper hinzufügen**
+    const title = document.createElement("div");
     title.className = "fyta-title"; // Eigene CSS-Klasse für den Titel
-    title.textContent = "testiieee"; // Titel setzen
+    title.textContent = "Plants"; // Titel setzen
     title.style.fontSize = "24px";
     title.style.color = "white"; // Falls dein Hintergrund dunkel ist
     title.style.fontWeight = "bold";
     title.style.textAlign = "center";
     title.style.marginBottom = "10px";
 
-    // **Titel dem Wrapper hinzufügen**
+    // **Titel zum Wrapper hinzufügen**
     wrapper.appendChild(title);
 
-    if (!data.plants || !Array.isArray(data.plants) || data.plants.length === 0) {
-        wrapper.innerHTML = "Loading plant data...";
-        wrapper.className = "dimmed light small";
+    if (!this.data || !this.data.plants || !Array.isArray(this.data.plants) || this.data.plants.length === 0) {
+        console.log("❌ Keine Pflanzendaten verfügbar.");
+        const loadingText = document.createElement("div");
+        loadingText.innerHTML = "Loading plant data...";
+        loadingText.className = "dimmed light small";
+        wrapper.appendChild(loadingText);
         return wrapper;
     }
 
     wrapper.className = "grid-container";
 
-    // Für jede Pflanze eine Zeile (Swimlane) erstellen
-    data.plants.forEach(plant => {
+    // **Für jede Pflanze eine Zeile (Swimlane) erstellen**
+    this.data.plants.forEach(plant => {
         const plantRow = document.createElement("div");
         plantRow.className = "swimlane";
 
@@ -127,9 +133,9 @@ Module.register("MMM-Fyta", {
         wrapper.appendChild(plantRow);
     });
 
-    return wrapper;
+    return wrapper; // **Jetzt wird der komplette Inhalt zurückgegeben**
 },
-
+    
     getStyles: function() {
         return ["MMM-Fyta.css"];
     },
