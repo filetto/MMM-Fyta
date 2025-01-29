@@ -1,12 +1,12 @@
 /* Grundlayout */
-.grid-container {
+.MMM-Fyta .grid-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 10px;
 }
 
-.swimlane {
+.MMM-Fyta .swimlane {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,7 +14,7 @@
     padding: 10px 0;
 }
 
-.swimlane-name {
+.MMM-Fyta .swimlane-name {
     flex: 1;
     font-size: 18px;
     font-weight: bold;
@@ -24,7 +24,7 @@
 }
 
 /* Balkengruppen */
-.bar-groups {
+.MMM-Fyta .bar-groups {
     display: flex;
     flex: 4;
     justify-content: space-around;
@@ -33,7 +33,7 @@
 }
 
 /* Balkencontainer */
-.bar-container {
+.MMM-Fyta .bar-container {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
@@ -41,7 +41,7 @@
 }
 
 /* Balken */
-.bar {
+.MMM-Fyta .bar {
     width: 20px;
     height: 20px;
     border-radius: 3px;
@@ -49,47 +49,47 @@
 }
 
 /* Balkenfarben (Status) */
-.bar.red {
+.MMM-Fyta .bar.red {
     background-color: #dc3545;
 }
 
-.bar.orange {
+.MMM-Fyta .bar.orange {
     background-color: #ffc107;
 }
 
-.bar.green {
+.MMM-Fyta .bar.green {
     background-color: #28a745;
 }
 
 /* Icon über den Balken */
-.legend-icon {
+.MMM-Fyta .legend-icon {
     text-align: center;
     margin-top: 10px;
 }
 
-.legend-icon i {
+.MMM-Fyta .legend-icon i {
     font-size: 20px;
     color: white;
 }
 
 /* Zusätzliche Stile für Responsivität */
 @media screen and (max-width: 600px) {
-    .swimlane {
+    .MMM-Fyta .swimlane {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
 
-    .bar-groups {
+    .MMM-Fyta .bar-groups {
         justify-content: flex-start;
         gap: 15px;
     }
 
-    .legend-icon i {
+    .MMM-Fyta .legend-icon i {
         font-size: 18px;
     }
 
-    .bar {
+    .MMM-Fyta .bar {
         width: 18px;
         height: 18px;
     }
