@@ -42,8 +42,8 @@ Module.register("MMM-Fyta", {
     title.style.textAlign = "center";
     title.style.marginBottom = "10px";
 
-// **Titel dem Wrapper hinzufügen**
-wrapper.appendChild(title);
+    // **Titel dem Wrapper hinzufügen**
+    wrapper.appendChild(title);
 
     if (!data.plants || !Array.isArray(data.plants) || data.plants.length === 0) {
         wrapper.innerHTML = "Loading plant data...";
