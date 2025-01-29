@@ -35,36 +35,23 @@ Module.register("MMM-Fyta", {
     getDom: function () {
     const wrapper = document.createElement("div");
 
-    // **Header für den Wrapper hinzufügen**
-    const title = document.createElement("div");
-    title.className = "fyta-title"; // Eigene CSS-Klasse für den Titel
-    title.textContent = "Plants"; // Titel setzen
-    title.style.fontSize = "24px";
-    title.style.color = "white"; // Falls dein Hintergrund dunkel ist
-    title.style.fontWeight = "bold";
-    title.style.textAlign = "center";
-    title.style.marginBottom = "10px";
-
-    // **Titel zum Wrapper hinzufügen**
-    wrapper.appendChild(title);
-
-    if (!this.data || !this.data.plants || !Array.isArray(this.data.plants) || this.data.plants.length === 0) {
-        wrapper.innerHTML += "Loading plant data...";
+    if (!data.plants || !Array.isArray(data.plants) || data.plants.length === 0) {
+        wrapper.innerHTML = "Loading plant data...";
         wrapper.className = "dimmed light small";
         return wrapper;
     }
 
     wrapper.className = "grid-container";
 
-    // **Für jede Pflanze eine Zeile (Swimlane) erstellen**
-    this.data.plants.forEach(plant => {
+    // Für jede Pflanze eine Zeile (Swimlane) erstellen
+    data.plants.forEach(plant => {
         const plantRow = document.createElement("div");
         plantRow.className = "swimlane";
 
         // Nur den Nicknamen anzeigen (common_name entfernt)
         const plantNameDiv = document.createElement("div");
         plantNameDiv.className = "swimlane-name";
-        plantNameDiv.innerHTML = `${plant.nickname}`; // Zeigt nur den Nicknamen
+        plantNameDiv.innerHTML = ${plant.nickname}; // Zeigt nur den Nicknamen
         plantRow.appendChild(plantNameDiv);
 
         // Balken-Gruppen (für Wasser, Pflanze, Sonne, Temperatur)
@@ -119,7 +106,7 @@ Module.register("MMM-Fyta", {
             const iconDiv = document.createElement("div");
             iconDiv.className = "legend-icon";
             const iconElement = document.createElement("i");
-            iconElement.className = `fas fa-${icon}`;
+            iconElement.className = fas fa-${icon};
             iconDiv.appendChild(iconElement);
 
             barContainer.appendChild(iconDiv);
@@ -130,7 +117,7 @@ Module.register("MMM-Fyta", {
         wrapper.appendChild(plantRow);
     });
 
-    return wrapper; // **Jetzt wird der komplette Inhalt zurückgegeben**
+    return wrapper;
 },
     
     getStyles: function() {
