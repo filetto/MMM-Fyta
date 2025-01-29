@@ -6,6 +6,15 @@
     padding: 10px;
 }
 
+.MMM-Fyta .fyta-title {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    display: block !important; /* Falls es versteckt wird */
+}
+
 .MMM-Fyta .swimlane {
     display: flex;
     align-items: center;
