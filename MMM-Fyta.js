@@ -37,7 +37,7 @@ Module.register("MMM-Fyta", {
     // **Header für den Wrapper hinzufügen**
     const title = document.createElement("div");
     title.className = "fyta-title"; // Eigene CSS-Klasse für den Titel
-    title.textContent = "Plants"; // Titel setzen
+    title.textContent = "wie geits de Pflanzä?"; // Titel setzen
     title.style.fontSize = "24px";
     title.style.color = "white"; // Falls dein Hintergrund dunkel ist
     title.style.fontWeight = "bold";
