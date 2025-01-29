@@ -49,11 +49,8 @@ Module.register("MMM-Fyta", {
     wrapper.appendChild(title);
 
     if (!this.data || !this.data.plants || !Array.isArray(this.data.plants) || this.data.plants.length === 0) {
-        console.log("❌ Keine Pflanzendaten verfügbar.");
-        const loadingText = document.createElement("div");
-        loadingText.innerHTML = "Loading plant data...";
-        loadingText.className = "dimmed light small";
-        wrapper.appendChild(loadingText);
+        wrapper.innerHTML += "Loading plant data...";
+        wrapper.className = "dimmed light small";
         return wrapper;
     }
 
