@@ -23,7 +23,6 @@ function getStatusText(status){
 
 }
 
-
 Module.register("MMM-Fyta", {
     defaults: {
         reloadIntervalInMs: 1 * 60 * 60 * 1000, // 1 hour
@@ -51,7 +50,7 @@ Module.register("MMM-Fyta", {
         // Nur den Nicknamen anzeigen (common_name entfernt)
         const plantNameDiv = document.createElement("div");
         plantNameDiv.className = "swimlane-name";
-        plantNameDiv.innerHTML = ${plant.nickname}; // Zeigt nur den Nicknamen
+        plantNameDiv.innerHTML = `${plant.nickname}`; // Zeigt nur den Nicknamen
         plantRow.appendChild(plantNameDiv);
 
         // Balken-Gruppen (für Wasser, Pflanze, Sonne, Temperatur)
@@ -106,7 +105,7 @@ Module.register("MMM-Fyta", {
             const iconDiv = document.createElement("div");
             iconDiv.className = "legend-icon";
             const iconElement = document.createElement("i");
-            iconElement.className = fas fa-${icon};
+            iconElement.className = `fas fa-${icon}`;
             iconDiv.appendChild(iconElement);
 
             barContainer.appendChild(iconDiv);
@@ -119,7 +118,7 @@ Module.register("MMM-Fyta", {
 
     return wrapper;
 },
-    
+
     getStyles: function() {
         return ["MMM-Fyta.css"];
     },
