@@ -54,7 +54,7 @@ const FytaPlantsFetcher = function (config) {
         second: '2-digit'
     });
 
-    console.log("🌱 Letzte Aktualisierung gesetzt:", lastUpdate);
+    // console.log("🌱 Letzte Aktualisierung gesetzt:", lastUpdate);
 
     // 📡 Übergib `plants` & `lastUpdate` an den Node Helper
     const dataToSend = {
