@@ -52,7 +52,7 @@ Module.register("MMM-Fyta", {
     wrapper.className = "grid-container";
 
     // Für jede Pflanze eine Zeile (Swimlane) erstellen
-    data.plants.forEach(plant => {
+    this.plants.forEach(plant => {
         const plantRow = document.createElement("div");
         plantRow.className = "swimlane";
 
@@ -150,7 +150,7 @@ Module.register("MMM-Fyta", {
         this.updateDom();
 
         // Balken einfärben
-        data.plants.forEach(plant => {
+        this.plants.forEach(plant => {
             const barGroups = document.getElementById(`${plant.name}-bars`);
             if (barGroups) {
                 barGroups.innerHTML = ""; // Vorherige Balken entfernen
