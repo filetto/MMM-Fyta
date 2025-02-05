@@ -58,7 +58,7 @@ const FytaPlantsFetcher = function (config) {
 
     // 📡 Übergib `plants` & `lastUpdate` an den Node Helper
     const dataToSend = {
-        plants: plantArray,
+        plants: plants.plants,
         lastUpdate: lastUpdate
     };
 
