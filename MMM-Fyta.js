@@ -55,9 +55,7 @@ Module.register("MMM-Fyta", {
     const updateInfo = document.createElement("div");
     updateInfo.className = "update-info";
     updateInfo.innerHTML = `🕒 Letzte Aktualisierung: ${this.lastUpdate || "Keine Zeitangabe verfügbar"}`;
-    updateInfo.style.fontSize = "14px";
-    updateInfo.style.color = "lightgray";
-    updateInfo.style.marginBottom = "10px";
+    updateInfo.className = "fyta-update-info"; // ❗ Neue Klasse für den Timestamp
     wrapper.appendChild(updateInfo);
 
     // Für jede Pflanze eine Zeile (Swimlane) erstellen
