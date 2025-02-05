@@ -137,13 +137,15 @@ Module.register("MMM-Fyta", {
         console.log("🌿 Pflanzen-Daten empfangen:", payload.plants);
         console.log("🕒 Letzte Aktualisierung empfangen:", payload.lastUpdate);
 
-        if (!payload.lastUpdate) {
-            console.error("❌ FEHLER: `payload.lastUpdate` ist nicht gesetzt!");
+        if (!payload.plants || !Array.isArray(payload.plants)) {
+            console.error("❌ FEHLER: `payload.plants` ist ungültig oder kein Array!", payload.plants);
+            return;
         }
 
         this.plants = payload.plants;
         this.lastUpdate = payload.lastUpdate || "Keine Zeitangabe verfügbar";
 
+        console.log("🔄 Update UI mit Pflanzen-Daten...");
         this.updateDom();
 
         // Balken einfärben
