@@ -39,17 +39,37 @@ const FytaPlantsFetcher = function (config) {
 		};
 
 		try {
-			console.log("Hole neue Daten ab der API")
-			const response = await fetch(plantsUrl, { headers: headers });
-			const json = await response.json();
-			plants = json;
-			plantsReceivedCallback(plants);
-			scheduleTimer();
-		}catch (error) {
-			console.log("Fetch plants error: ", error)
-			fetchFailedCallback(this, error);
-			scheduleTimer();
-		}
+    console.log("🌍 Hole neue Daten von der API...");
+    const response = await fetch(plantsUrl, { headers: headers });
+    const json = await response.json();
+    plants = json;
+
+    // 📌 Erfasse die aktuelle Zeit der Aktualisierung
+    const lastUpdate = new Date().toLocaleString('de-CH', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+
+    console.log("🌱 Letzte Aktualisierung gesetzt:", lastUpdate);
+
+    // 📡 Übergib `plants` & `lastUpdate` an den Node Helper
+    const dataToSend = {
+        plants: plants,
+        lastUpdate: lastUpdate
+    };
+
+    console.log("📡 Sende Daten an `plansReceivedCallback`:", dataToSend);
+    plantsReceivedCallback(dataToSend); // **Jetzt als Objekt senden**
+    
+    scheduleTimer();
+} catch (error) {
+    console.error("❌ Fehler beim Abrufen der Daten:", error);
+    fetchFailedCallback(error);
+}
 	};
 
 
