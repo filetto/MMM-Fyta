@@ -56,14 +56,14 @@ const FytaPlantsFetcher = function (config) {
 
     console.log("🌱 Letzte Aktualisierung gesetzt:", lastUpdate);
 
-    // 📡 Übergib nur `plants` & `lastUpdate`
+    // 📡 Übergib `plants` & `lastUpdate` an den Node Helper
     const dataToSend = {
-        plants: plantData, // **Jetzt sichergestellt, dass es ein Array ist**
+        plants: plants,
         lastUpdate: lastUpdate
     };
 
-    console.log("📡 Sende Daten an `plansReceivedCallback`:", dataToSend);
-    plantsReceivedCallback(dataToSend); // **Jetzt als Objekt senden**
+    console.log("📡 Sende Daten an `plantsReceivedCallback`:", dataToSend);
+    plantsReceivedCallback(dataToSend);
     
     scheduleTimer();
 } catch (error) {
