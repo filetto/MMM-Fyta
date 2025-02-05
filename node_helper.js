@@ -39,12 +39,11 @@ module.exports = NodeHelper.create({
 	 * and broadcasts these using sendSocketNotification.
 	 */
 	broadcastPlants(dataToSend) {		
-    console.log(`📡 Broadcasting ${dataToSend.plants.length} plants with lastUpdate: ${dataToSend.lastUpdate}`);
+    console.log(`📡 Broadcasting ${dataToSend.plants ? dataToSend.plants.length : "undefined"} plants with lastUpdate: ${dataToSend.lastUpdate}`);
 
-    // Sicherstellen, dass `lastUpdate` existiert
-    if (!dataToSend.lastUpdate) {
-        console.error("❌ WARNUNG: `lastUpdate` fehlt! Setze Standardwert.");
-        dataToSend.lastUpdate = "Keine Zeitangabe verfügbar";
+    if (!Array.isArray(dataToSend.plants)) {
+        console.error("❌ FEHLER: `dataToSend.plants` ist kein Array! Datenstruktur prüfen:", dataToSend);
+        return;
     }
 
     this.sendSocketNotification("PLANTS_DATA", dataToSend);
