@@ -38,9 +38,9 @@ module.exports = NodeHelper.create({
 	 * Creates an object with all feed items of the different registered feeds,
 	 * and broadcasts these using sendSocketNotification.
 	 */
-	broadcastPlants (plants) {		
-        console.log(`Broadcasting ${plants.plants.length} plants`)
-		this.sendSocketNotification("PLANTS", plants);
-	/*	console.log("Daten, die gesendet werden:", plants); */
-	}
+	broadcastPlants(dataToSend) {		
+    console.log(`📡 Broadcasting ${dataToSend.plants.length} plants with lastUpdate: ${dataToSend.lastUpdate}`);
+
+    this.sendSocketNotification("PLANTS_DATA", dataToSend);
+}
 });

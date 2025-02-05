@@ -42,16 +42,24 @@ Module.register("MMM-Fyta", {
     // **Titel zum Wrapper hinzufügen**
     wrapper.appendChild(title);
 
-    if (!data.plants || !Array.isArray(data.plants) || data.plants.length === 0) {
-        wrapper.innerHTML = "Loading plant data...";
-        wrapper.className = "dimmed light small";
-        return wrapper;
+    if (!this.plants || !Array.isArray(this.plants) || this.plants.length === 0) {
+    console.warn("⚠️ `this.plants` ist leer oder nicht gesetzt! Zeige Loading-Text...");
+    wrapper.innerHTML = "Loading plant data...";
+    wrapper.className = "dimmed light small";
+    return wrapper;
     }
 
     wrapper.className = "grid-container";
 
+    // **Anzeige der letzten Aktualisierungszeit sicherstellen**
+    const updateInfo = document.createElement("div");
+    updateInfo.className = "update-info";
+    updateInfo.innerHTML = `🕒 Letzte Aktualisierung: ${this.lastUpdate || "Keine Zeitangabe verfügbar"}`;
+    updateInfo.className = "fyta-update-info"; // ❗ Neue Klasse für den Timestamp
+    wrapper.appendChild(updateInfo);
+
     // Für jede Pflanze eine Zeile (Swimlane) erstellen
-    data.plants.forEach(plant => {
+    this.plants.forEach(plant => {
         const plantRow = document.createElement("div");
         plantRow.className = "swimlane";
 
@@ -130,18 +138,26 @@ Module.register("MMM-Fyta", {
     getStyles: function() {
         return ["MMM-Fyta.css"];
     },
-    socketNotificationReceived: function(notification, payload) {
-    if (notification === "PLANTS") {
-         if (!payload || !Array.isArray(payload.plants)) {
-            console.error("MMM-Fyta: Ungültige Daten empfangen:", payload);
+    socketNotificationReceived: function (notification, payload) {
+    console.log("📥 SOCKET EMPFÄNGT:", notification, payload);
+
+    if (notification === "PLANTS_DATA") {
+        console.log("🌿 Pflanzen-Daten empfangen:", payload.plants);
+        console.log("🕒 Letzte Aktualisierung empfangen:", payload.lastUpdate);
+
+        if (!payload.plants || !Array.isArray(payload.plants)) {
+            console.error("❌ FEHLER: `payload.plants` ist ungültig oder kein Array!", payload.plants);
             return;
-         }
-        data.plants = payload.plants;
-        console.log("MMM-Fyta: Daten empfangen", payload); // Debug-Log
+        }
+
+        this.plants = payload.plants;
+        this.lastUpdate = payload.lastUpdate || "Keine Zeitangabe verfügbar";
+
+        console.log("🔄 Update UI mit Pflanzen-Daten...");
         this.updateDom();
 
         // Balken einfärben
-        data.plants.forEach(plant => {
+        this.plants.forEach(plant => {
             const barGroups = document.getElementById(`${plant.name}-bars`);
             if (barGroups) {
                 barGroups.innerHTML = ""; // Vorherige Balken entfernen
