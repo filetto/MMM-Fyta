@@ -56,9 +56,9 @@ const FytaPlantsFetcher = function (config) {
 
     console.log("🌱 Letzte Aktualisierung gesetzt:", lastUpdate);
 
-    // 📡 Übergib `plants` & `lastUpdate` an den Node Helper
+    // 📡 Übergib nur `plants` & `lastUpdate`
     const dataToSend = {
-        plants: plants,
+        plants: plantData, // **Jetzt sichergestellt, dass es ein Array ist**
         lastUpdate: lastUpdate
     };
 
