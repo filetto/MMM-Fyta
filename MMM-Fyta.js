@@ -42,10 +42,11 @@ Module.register("MMM-Fyta", {
     // **Titel zum Wrapper hinzufügen**
     wrapper.appendChild(title);
 
-    if (!data.plants || !Array.isArray(data.plants) || data.plants.length === 0) {
-        wrapper.innerHTML = "Loading plant data...";
-        wrapper.className = "dimmed light small";
-        return wrapper;
+    if (!this.plants || !Array.isArray(this.plants) || this.plants.length === 0) {
+    console.warn("⚠️ `this.plants` ist leer oder nicht gesetzt! Zeige Loading-Text...");
+    wrapper.innerHTML = "Loading plant data...";
+    wrapper.className = "dimmed light small";
+    return wrapper;
     }
 
     wrapper.className = "grid-container";
