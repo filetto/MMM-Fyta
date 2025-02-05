@@ -62,7 +62,7 @@ const FytaPlantsFetcher = function (config) {
         lastUpdate: lastUpdate
     };
 
-    console.log("📡 Sende Daten an `plantsReceivedCallback`:", dataToSend);
+    // console.log("📡 Sende Daten an `plantsReceivedCallback`:", dataToSend);
     plantsReceivedCallback(dataToSend);
     
     scheduleTimer();
