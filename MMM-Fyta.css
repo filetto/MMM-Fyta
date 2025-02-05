@@ -61,7 +61,7 @@
 /* Balken */
 .MMM-Fyta .bar {
     width: 20px;
-    height: 20px;
+    height: 8px;
     border-radius: 3px;
     background-color: gray; /* Standardfarbe */
 }
