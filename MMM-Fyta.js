@@ -130,14 +130,20 @@ Module.register("MMM-Fyta", {
     getStyles: function() {
         return ["MMM-Fyta.css"];
     },
-    socketNotificationReceived: function(notification, payload) {
-    if (notification === "PLANTS") {
-         if (!payload || !Array.isArray(payload.plants)) {
-            console.error("MMM-Fyta: Ungültige Daten empfangen:", payload);
-            return;
-         }
-        data.plants = payload.plants;
-        console.log("MMM-Fyta: Daten empfangen", payload); // Debug-Log
+    socketNotificationReceived: function (notification, payload) {
+    console.log("📥 SOCKET EMPFÄNGT:", notification, payload);
+
+    if (notification === "PLANTS_DATA") {
+        console.log("🌿 Pflanzen-Daten empfangen:", payload.plants);
+        console.log("🕒 Letzte Aktualisierung empfangen:", payload.lastUpdate);
+
+        if (!payload.lastUpdate) {
+            console.error("❌ FEHLER: `payload.lastUpdate` ist nicht gesetzt!");
+        }
+
+        this.plants = payload.plants;
+        this.lastUpdate = payload.lastUpdate || "Keine Zeitangabe verfügbar";
+
         this.updateDom();
 
         // Balken einfärben
