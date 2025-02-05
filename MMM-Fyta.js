@@ -51,6 +51,15 @@ Module.register("MMM-Fyta", {
 
     wrapper.className = "grid-container";
 
+    // **Anzeige der letzten Aktualisierungszeit sicherstellen**
+    const updateInfo = document.createElement("div");
+    updateInfo.className = "update-info";
+    updateInfo.innerHTML = `🕒 Letzte Aktualisierung: ${this.lastUpdate || "Keine Zeitangabe verfügbar"}`;
+    updateInfo.style.fontSize = "14px";
+    updateInfo.style.color = "lightgray";
+    updateInfo.style.marginBottom = "10px";
+    wrapper.appendChild(updateInfo);
+
     // Für jede Pflanze eine Zeile (Swimlane) erstellen
     this.plants.forEach(plant => {
         const plantRow = document.createElement("div");
