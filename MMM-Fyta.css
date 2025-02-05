@@ -15,6 +15,15 @@
     border-bottom: 1px solid #ccc;
 }
 
+/* Timestamp-Text für letzte Aktualisierung */
+.MMM-Fyta .fyta-update-info {
+    font-size: 14px;
+    color: lightgray;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 .MMM-Fyta .swimlane {
     display: flex;
     align-items: center;
